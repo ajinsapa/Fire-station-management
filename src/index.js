@@ -35,6 +35,8 @@ import StaionLogin from "views/Station/StaionLogin";
 import StationSignUp from "views/Station/StationSignUp";
 import EmployeeLogin from "views/Employee/EmployeeLogin";
 import ContactUsHeader from "views/ContactUs/ContactUsHeader";
+import StationDashboard from "views/Station/StationDashboard";
+import UserDashboard from "views/examples/UserDashboard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -51,8 +53,8 @@ root.render(
 <Route  path="/station-signup"  element={<StationSignUp/>}></Route>
 <Route path="/employee-login"  element={<EmployeeLogin></EmployeeLogin>}   ></Route>
 <Route  path="/contact" element={<ContactUsHeader></ContactUsHeader>} ></Route>
-
-
+<Route path="/station-dashboard" element={<StationDashboard/>}  ></Route>
+<Route  path="/user-dashboard" element={<UserDashboard/>}  ></Route>
       <Route path="*" element={<Navigate to="/index" replace />} />
     </Routes>
   </BrowserRouter>

@@ -23,6 +23,7 @@ import {
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
 import { stationRegisterApi } from 'views/Services/AllApis';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -30,6 +31,14 @@ import { stationRegisterApi } from 'views/Services/AllApis';
 
 
 function StationSignUp() {
+
+
+const navigate=useNavigate()
+
+
+
+
+
 
 //validation
 
@@ -91,7 +100,7 @@ setSEmail(false)
 
 if(name=='phone')
 {
-  if (value.match(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{5})$/)){
+  if (value.match(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/)){
     setSPhone(false)
   }
   else{
@@ -147,7 +156,7 @@ const result=await stationRegisterApi(station)
 console.log(result);
 
 if(result.status==200){ 
-alert(result.data.username )
+alert(result.data.name +`Registered Successfully`)
 setStation({name:"",
 location:"",
 email_address:"",
@@ -155,13 +164,12 @@ phone:"",
 username:"",
 password:""})
 
-
-
+navigate('/station-login')
 }
 else{
 
 
-alert(result.response.data)
+alert(result.response.username  )
 
 
 
@@ -402,7 +410,7 @@ sname && <p>Invalid UserName</p>
             block
             className="btn-round"
             color="warning"
-            href="#pablo"
+         
             onClick={(e) => handleStationRegister(e)}
             size="lg"
           >

@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  
 // reactstrap components
 import {
   Button,
@@ -15,6 +19,7 @@ import {
   Container,
   Row
 } from "reactstrap";
+import { userRegisterApi } from "views/Services/AllApis";
 
 // core components
 
@@ -23,7 +28,7 @@ function SignUp() {
   const [lastFocus, setLastFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
 
-
+const navigate=useNavigate()
   //validation
 
   const[uname,setUname]=useState(false)
@@ -130,6 +135,69 @@ setUserRegister({...userRegister,[name]:value})
 console.log(userRegister);
 
 
+const handleUserRegister=async(e)=>{
+
+  e.preventDefault()
+  const{name,location,email_address,phone,username,password}=userRegister
+  
+  if(!name || !location || !phone ||! email_address|| !username||!password)
+  
+  {
+    alert("Please fill All Datas")
+  }
+  else{
+  
+  const result=await userRegisterApi(userRegister)
+  console.log(result);
+  
+  if(result.status==200){ 
+  setUserRegister({name:"",
+  location:"",
+  phone:"",
+  email_address:"",
+  
+  username:"",
+  password:""})
+
+  toast.success(result.data.name+'Registered Successfully', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
+
+
+  
+  navigate('/login-page')
+  }
+  else{
+  
+  
+  alert(result.response.username  )
+  
+  
+  
+  }
+  
+  
+  
+  
+  
+  }
+  
+    }
+  
+  
+  
+
+
+
+
 
 
   return (
@@ -194,6 +262,7 @@ console.log(userRegister);
                       placeholder=" Name"
                       type="text"
                       name="name"
+                      value={userRegister.name}
                       onChange={(e)=>setSignUp(e)}
                       onFocus={() => setFirstFocus(true)}
                       onBlur={() => setFirstFocus(false)}
@@ -224,6 +293,8 @@ uname && <p>Invalid Name</p>
                       placeholder=" Location"
                       type="text"
                       name="location"
+                      value={userRegister.location}
+
                       onChange={(e)=>setSignUp(e)}
                       onFocus={() => setFirstFocus(true)}
                       onBlur={() => setFirstFocus(false)}
@@ -257,6 +328,8 @@ ulocation && <p>Invalid Location</p>
                       placeholder=" PhoneNumber"
                       type="tel"
                       name="phone"
+                      value={userRegister.phone}
+
                       onChange={(e)=>setSignUp(e)}
                       onFocus={() => setFirstFocus(true)}
                       onBlur={() => setFirstFocus(false)}
@@ -287,6 +360,8 @@ uphone && <p>Invalid Number</p>
                       placeholder="Email..."
                       type="email"
                       name="email_address"
+                      value={userRegister.email_address}
+
                       onChange={(e)=>setSignUp(e)}
                       onFocus={() => setEmailFocus(true)}
                       onBlur={() => setEmailFocus(false)}
@@ -319,6 +394,8 @@ uemail && <p>Invalid Email Address</p>
                       placeholder="UserName"
                       type="text"
                       name="username"
+                      value={userRegister.username}
+
                       onChange={(e)=>setSignUp(e)}
                       onFocus={() => setLastFocus(true)}
                       onBlur={() => setLastFocus(false)}
@@ -350,6 +427,8 @@ uusername && <p>Invalid UserName</p>
                       placeholder="Password"
                       type="password"
                       name="password"
+                      value={userRegister.password}
+
                       onChange={(e)=>setSignUp(e)}
                       onFocus={() => setLastFocus(true)}
                       onBlur={() => setLastFocus(false)}
@@ -370,7 +449,7 @@ upassword && <p>Invalid password</p>
                   <Button
                     className="btn-neutral btn-round"
                     color="info"
-                    href="/login-page"
+                    onClick={(e)=>handleUserRegister(e)}
                     
                     size="lg"
                   >
@@ -382,6 +461,7 @@ upassword && <p>Invalid password</p>
           </Row>
           
         </Container>
+        <ToastContainer />
       </div>
     </>
   );

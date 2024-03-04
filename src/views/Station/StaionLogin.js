@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -23,11 +24,16 @@ import {
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
+import { stationLoginApi } from 'views/Services/AllApis';
+import { useNavigate } from 'react-router-dom';
 
 
 function StaionLogin() {
   
   
+
+const navigate=useNavigate()
+
   //validation
 
   const[logUsername,setLogUserName]=useState(false)
@@ -87,9 +93,69 @@ setlogPassword(true)
 
   setStationLogin({...stationLogin,[name]:value})
 }
-
 console.log(stationLogin);
 
+
+
+const handleStationLogin=async(e)=>{
+
+e.preventDefault()
+const{username,password}=stationLogin
+if(!username || !password){
+  alert("please fill all datas")
+}
+else{
+//api
+const result= await stationLoginApi(stationLogin)
+console.log(result);
+
+if(result.status==200){
+setStationLogin({username:"",password:""})
+
+toast.success('Login Success!', {
+  position: "top-center",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+
+  
+ 
+  });
+  navigate('/station-dashboard')
+
+}
+else{
+  setStationLogin({username:"",password:""})
+
+  toast.error(result.response.data.non_field_errors[0]  , {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
@@ -150,6 +216,7 @@ console.log(stationLogin);
                         placeholder="UserName"
                         type="text"
                         name="username"
+                        value={stationLogin.username}
                         onFocus={() => setFirstFocus(true)}
                         onBlur={() => setFirstFocus(false)}
                         onChange={(e)=>setLoginDatas(e)}
@@ -179,6 +246,7 @@ logUsername&& <p>Invalid UserName</p>
                         placeholder="Password"
                         type="password"
                         name="password"
+                        value={stationLogin.password}
                         onFocus={() => setLastFocus(true)}
                         onBlur={() => setLastFocus(false)}
                         onChange={(e)=>setLoginDatas(e)}
@@ -199,8 +267,8 @@ logPassword && <p>Invalid Password</p>
                       block
                       className="btn-round"
                       color="warning"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                     
+                      onClick={(e) =>handleStationLogin(e)}
                       size="lg"
                     >
                       Login
@@ -209,7 +277,7 @@ logPassword && <p>Invalid Password</p>
                       <h6>
                         <a
                           className="link"
-                          href="/station-signup"
+                         
                          
                         >
                           Don't you have an Account?
@@ -236,6 +304,7 @@ logPassword && <p>Invalid Password</p>
         <TransparentFooter />
       </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

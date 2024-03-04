@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  
 // reactstrap components
 import {
   Button,
@@ -19,6 +21,8 @@ import {
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
+import { userLoginApi } from "views/Services/AllApis";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [firstFocus, setFirstFocus] = React.useState(false);
@@ -29,7 +33,7 @@ function LoginPage() {
 const[userValid,setUserValid]=useState(false)
 const[passValid,setPassValid]=useState(false)
 
-
+const navigate=useNavigate()
   const [uLogin, setULogin] = useState({
 
   
@@ -76,6 +80,79 @@ const[passValid,setPassValid]=useState(false)
     setULogin({ ...uLogin, [name]: value })
   }
   console.log(uLogin);
+
+
+
+  const handleUserLogin=async(e)=>{
+
+    e.preventDefault()
+    const{username,password}=uLogin
+    if(!username || !password){
+      alert("please fill all datas")
+    }
+    else{
+    //api
+    const result= await userLoginApi(uLogin)
+    console.log(result);
+    
+    if(result.status==200){
+    setULogin({username:"",password:""})
+    
+    toast.success('Login Success!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    
+      
+     
+      });
+      navigate('/user-dashboard')
+    
+    }
+    else{
+      setULogin({username:"",password:""})
+    
+      toast.error(result.response.data.non_field_errors[0]  , {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+    
+    
+
+
+
+
+
+
+
+
+
 
 
 
@@ -174,7 +251,7 @@ passValid && <p>Invalid Password</p>
                       className="btn-round"
                       color="info"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={(e) => handleUserLogin(e)}
                       size="lg"
                     >
                       Login
@@ -208,6 +285,7 @@ passValid && <p>Invalid Password</p>
           </Container>
         </div>
         <TransparentFooter />
+        <ToastContainer />
       </div>
     </>
   );
