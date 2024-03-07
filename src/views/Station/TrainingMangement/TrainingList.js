@@ -58,13 +58,11 @@ function TrainingList() {
         <FloatingLabel
         controlId="floatingInput"
         label=""
-        className=" "
+        className=" flow"
       >
-<Form.Control type="text" placeholder="Name" />
+<Form.Control type="text" placeholder=" Video Name" />
       </FloatingLabel>
-      <FloatingLabel controlId="floatingPassword" label=""  className=''>
-        <Form.Control type="password" placeholder="Password" />
-      </FloatingLabel>
+     
 
       <FloatingLabel className=''   controlId="floatingPassword"    label="">
         <Form.Control type="text" placeholder="Video Url "name='videoUrl' />

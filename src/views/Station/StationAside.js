@@ -26,17 +26,20 @@ function StationAside() {
                  <span   >Employee Management </span> </li   >
                  </Link>
                  
+                 <Link   to="/incident" >    
                  <li className="list-group-item" style={{backgroundColor:"black"}} >
                   
                  <i class="fa-solid fa-fire  mx-2"></i>
                  <span  >Incident  Management </span> </li   >
-
+                 </Link>
 
 
                  <li className="list-group-item" style={{backgroundColor:"black"}} >
                   
                  <i class="fa-solid fa-people-group mx-2"></i>
                  <span  >Team  Management </span> </li   >
+
+
                  <Link   to="/training-list" > 
                 <li className="list-group-item" style={{backgroundColor:"black"}} >
                       

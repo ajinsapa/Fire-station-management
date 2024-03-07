@@ -25,6 +25,7 @@ import "assets/scss/now-ui-kit.scss?v=1.5.0";
 import "assets/demo/demo.css?v=1.5.0";
 import "assets/demo/nucleo-icons-page-styles.css?v=1.5.0";
 
+
 // pages for this kit
 import Index from "views/Index.js";
 import NucleoIcons from "views/NucleoIcons.js";
@@ -41,6 +42,8 @@ import UserDashboard from "views/examples/UserDashboard";
 import ListingEmployees from "views/Station/EmployeeManagement/ListingEmployees";
 import TrainingList from "views/Station/TrainingMangement/TrainingList";
 import TrainingVideoList from "views/Station/TrainingMangement/TrainingVideoList";
+import IncidentPage from "views/Station/IncidentManagement/IncidentPage";
+import IncidentList from "views/Station/IncidentManagement/IncidentList";
 
 
 
@@ -65,6 +68,8 @@ root.render(
       <Route    path="/listing-employees"  element={<ListingEmployees/>} ></Route>
       <Route  path="/training-list"  element={<TrainingList/>} ></Route>
 <Route    path="/video-list"  element={<TrainingVideoList/>}></Route>
+<Route    path='/incident' element={<IncidentPage/>}   ></Route>
+<Route path="/incident-list" element={<IncidentList/>}    ></Route>
     </Routes>
   </BrowserRouter>
 );

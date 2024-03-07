@@ -12,7 +12,7 @@ function StationNav() {
 
 
 <Navbar style={{backgroundColor:"red"}}>
-      <Container>
+      <Container  >
         <Navbar.Brand  style={{color:"white"}} href="#home">Nova Fire And Rescue Services</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
