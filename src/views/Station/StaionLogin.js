@@ -59,7 +59,7 @@ const setLoginDatas=(e)=>{
   const{value,name}=e.target
 
 
-if(name=='username')
+if(name==='username')
 {
 
 if(value.match(/^[0-9A-Za-z]{6,16}$/)){
@@ -74,7 +74,7 @@ setLogUserName(true)
 }
 }
 
-if(name=='password'){
+if(name==='password'){
 
 if(value.match(/^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/))
 {
@@ -111,7 +111,7 @@ console.log(result);
 
 if(result.status==200){
 setStationLogin({username:"",password:""})
-
+alert("Login Success")
 toast.success('Login Success!', {
   position: "top-center",
   autoClose: 5000,

@@ -1,0 +1,53 @@
+.listingg{
+    
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.head{
+
+color: rgb(255, 252, 249);
+
+}
+.m1{
+
+background-image: url("https://i.postimg.cc/nLS8vRLM/Bdbusinessfinder.jpg");
+background-size: cover;
+height: 200vh;
+
+}
+.animated-button {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    background: #4CAF50; /* Button background color */
+    color: white; /* Button text color */
+    padding: 10px 20px; /* Button padding */
+    font-size: 16px; /* Button font size */
+    cursor: pointer;
+  }
+  
+  .animated-button::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2); /* Animation background color */
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+  }
+  
+  .animated-button:hover::after {
+    width: 0;
+    height: 0;
+  }
+  .modal11{
+    margin-left: 100px;
+    color: Red;
+  }
+  

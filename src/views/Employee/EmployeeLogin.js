@@ -34,7 +34,7 @@ const EmployeeLogin = () => {
   const seteLogin = (e) => {
     const { value, name } = e.target;
 
-    if (name == "name") {
+    if (name === "name") {
       if (value.match(/^[0-9A-Za-z]{6,16}$/)) {
         setEregisterName(false);
       } else {
@@ -42,7 +42,7 @@ const EmployeeLogin = () => {
       }
     }
 
-    if (name == "phone") {
+    if (name === "phone") {
       if (value.match(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/)) {
         setEregisterPhone(false);
       } else {
@@ -50,7 +50,7 @@ const EmployeeLogin = () => {
       }
     }
 
-    if (name == "email_address") {
+    if (name === "email_address") {
       if (value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
         setEregisterEmail(false);
       } else {
@@ -58,7 +58,7 @@ const EmployeeLogin = () => {
       }
     }
 
-    if (name == "username") {
+    if (name === "username") {
       if (value.match(/^[0-9A-Za-z]{6,16}$/)) {
         setEregisterUser(false);
       } else {
@@ -119,8 +119,8 @@ const EmployeeLogin = () => {
           username: "",
           password: "",
         });
-
-        toast.error(result.response.username, {
+        alert(result.response.data.email_address)
+        toast.error(result.response.data.email_address, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,

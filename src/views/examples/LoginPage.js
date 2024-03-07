@@ -49,7 +49,7 @@ const navigate=useNavigate()
     const { value, name } = e.target
 
 
-    if(name=='username')
+    if(name==='username')
     {
       if(value.match(/^[0-9A-Za-z]{6,16}$/)){
         setUserValid(false)
@@ -59,7 +59,7 @@ const navigate=useNavigate()
       }
     }
     
-    if(name=='password')
+    if(name==='password')
     {
       if(value.match(/^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/))
       {
@@ -97,7 +97,7 @@ const navigate=useNavigate()
     
     if(result.status==200){
     setULogin({username:"",password:""})
-    
+    alert("Login Success!!")
     toast.success('Login Success!', {
       position: "top-center",
       autoClose: 5000,

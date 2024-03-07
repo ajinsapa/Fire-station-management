@@ -61,7 +61,7 @@ const setSignUp=(e)=>{
 
 const{value,name}=e.target
 
-if(name=='name'){
+if(name==='name'){
 
 if(value.match(/^[a-zA-Z *]+$/)){
   setUname(false)
@@ -72,7 +72,7 @@ else{
 
 }
 
-if(name=='location'){
+if(name==='location'){
 
   if(value.match(/^[a-zA-Z]+$/)){
     setLocation(false)
@@ -84,7 +84,7 @@ if(name=='location'){
   
   }
 
-  if(name=='phone'){
+  if(name==='phone'){
 
     if(value.match(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/)){
       setPhone(false)
@@ -95,7 +95,7 @@ if(name=='location'){
     
     }
 
-    if(name=='email_address'){
+    if(name==='email_address'){
 
       if(value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)){
         setEmail(false)
@@ -106,7 +106,7 @@ if(name=='location'){
       
       }
 
-      if(name=='username'){
+      if(name==='username'){
 
         if(value.match(/^[0-9A-Za-z]{6,16}$/)){
           setUsername(false)
@@ -116,7 +116,7 @@ if(name=='location'){
         }
         
         }
-        if(name=='password'){
+        if(name==='password'){
 
           if(value.match(/^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/)){
             setPassword(false)
@@ -158,7 +158,7 @@ const handleUserRegister=async(e)=>{
   
   username:"",
   password:""})
-
+  alert(result.data.name+`Registered Successfully`)
   toast.success(result.data.name+'Registered Successfully', {
     position: "top-center",
     autoClose: 5000,
@@ -177,8 +177,15 @@ const handleUserRegister=async(e)=>{
   }
   else{
   
+    setUserRegister({name:"",
+    location:"",
+    phone:"",
+    email_address:"",
+    
+    username:"",
+    password:""})
   
-  alert(result.response.username  )
+  alert(result.response.data.email_address )
   
   
   

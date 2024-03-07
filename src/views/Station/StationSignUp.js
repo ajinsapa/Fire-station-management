@@ -169,7 +169,7 @@ navigate('/station-login')
 else{
 
 
-alert(result.response.username  )
+alert(result.response.data.phone  )
 
 
 

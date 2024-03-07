@@ -1,0 +1,11 @@
+.trainingvideo{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+}
+.k1{
+    background-image: url("https://i.postimg.cc/tTZTsSNx/img-5121.webp");
+background-size: cover;
+height: 100vh;
+}

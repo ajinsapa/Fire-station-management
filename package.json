@@ -3,10 +3,16 @@
   "version": "1.5.2",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.11",
     "axios": "^1.6.7",
+    "bootstrap": "^5.3.3",
+    "cdbreact": "^1.5.18",
     "moment": "2.29.4",
     "nouislider": "15.4.0",
     "react": ">=16.8.0",
+    "react-bootstrap": "^2.10.1",
     "react-bootstrap-switch": "15.5.3",
     "react-datetime": "3.2.0",
     "react-dom": ">=16.8.0",
@@ -14,6 +20,7 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^10.0.4",
     "reactstrap": "8.10.0",
+    "recharts": "^2.12.2",
     "sass": "1.62.1"
   },
   "scripts": {
