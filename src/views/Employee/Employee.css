@@ -1,0 +1,31 @@
+.emp{
+    
+    text-align: center;
+    color: grey;
+}
+.vehiclelistadd{
+    text-align: center;
+    font-size: large;
+    font-style: italic;
+
+}
+.form1{
+    margin-top: 50px;
+}
+.carrd1 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card-body2 {
+    flex-grow: 1;
+  }
+  .but{
+    margin-top: 20px;
+    margin-left: 10px;
+width: 100%;  }
+.view{
+    margin-left:90px;
+    margin-top: -60px;
+}

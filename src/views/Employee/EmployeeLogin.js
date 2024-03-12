@@ -5,6 +5,8 @@ import { employeeRegisterApi } from "views/Services/AllApis";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { employeeLoginApi } from "views/Services/AllApis";
+import EmployeeNav from "./EmployeeNav";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeLogin = () => {
   //validation
@@ -19,6 +21,8 @@ const EmployeeLogin = () => {
 
   const [isSignInActive, setIsSignInActive] = useState(true);
   const [isSignUpActive, setIsSignUpActive] = useState(false);
+
+  const navigate=useNavigate()
 
   //state
 
@@ -160,6 +164,8 @@ const EmployeeLogin = () => {
           progress: undefined,
           theme: "colored",
         });
+        navigate("/employee-dash")
+
       } else {
         alert(result.response.data.non_field_errors[0]);
       }
@@ -169,7 +175,8 @@ const EmployeeLogin = () => {
   console.log(eregister);
 
   return (
-    <div>
+    <div   className="body11" >
+      <EmployeeNav></EmployeeNav>
       <div className=" s">
         <div className="login-wrap mt-5">
           <div className="login-html">
@@ -225,6 +232,7 @@ const EmployeeLogin = () => {
                     onClick={(e) => handleEmployeeLogin(e)}
                     className="button"
                     value="Sign In"
+                    href="/employee-dash"
                   />
                 </div>
                 <div className="hr"></div>

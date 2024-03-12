@@ -25,7 +25,6 @@ import "assets/scss/now-ui-kit.scss?v=1.5.0";
 import "assets/demo/demo.css?v=1.5.0";
 import "assets/demo/nucleo-icons-page-styles.css?v=1.5.0";
 
-
 // pages for this kit
 import Index from "views/Index.js";
 import NucleoIcons from "views/NucleoIcons.js";
@@ -44,32 +43,46 @@ import TrainingList from "views/Station/TrainingMangement/TrainingList";
 import TrainingVideoList from "views/Station/TrainingMangement/TrainingVideoList";
 import IncidentPage from "views/Station/IncidentManagement/IncidentPage";
 import IncidentList from "views/Station/IncidentManagement/IncidentList";
-
-
+import TeamListing from "views/Station/TeamMnagement/TeamListing";
+import TeamList from "views/Station/TeamMnagement/TeamList";
+import VehicleList from "views/Station/VehicleList/VehicleList";
+import EmployeeDashboard from "views/Employee/EmployeeDashboard";
+import EmployeeTrainingList from "views/Employee/EmployeeTrainingList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route  path="/sign-up" element={<SignUp/>} ></Route>
+      <Route path="/sign-up" element={<SignUp />}></Route>
       <Route path="/index" element={<Index />} />
       <Route path="/nucleo-icons" element={<NucleoIcons />} />
       <Route path="/landing-page" element={<LandingPage />} />
       <Route path="/profile-page" element={<ProfilePage />} />
       <Route path="/login-page" element={<LoginPage />} />
-<Route  path="/station-login"   element={<StaionLogin/>}  ></Route>
-<Route  path="/station-signup"  element={<StationSignUp/>}></Route>
-<Route path="/employee-login"  element={<EmployeeLogin></EmployeeLogin>}   ></Route>
-<Route  path="/contact" element={<ContactUsHeader></ContactUsHeader>} ></Route>
-<Route path="/station-dashboard" element={<StationDashboard/>}  ></Route>
-<Route  path="/user-dashboard" element={<UserDashboard/>}  ></Route>
+      <Route path="/station-login" element={<StaionLogin />}></Route>
+      <Route path="/station-signup" element={<StationSignUp />}></Route>
+      <Route
+        path="/employee-login"
+        element={<EmployeeLogin></EmployeeLogin>}
+      ></Route>
+      <Route
+        path="/contact"
+        element={<ContactUsHeader></ContactUsHeader>}
+      ></Route>
+      <Route path="/station-dashboard" element={<StationDashboard />}></Route>
+      <Route path="/user-dashboard" element={<UserDashboard />}></Route>
       <Route path="*" element={<Navigate to="/index" replace />} />
-      <Route    path="/listing-employees"  element={<ListingEmployees/>} ></Route>
-      <Route  path="/training-list"  element={<TrainingList/>} ></Route>
-<Route    path="/video-list"  element={<TrainingVideoList/>}></Route>
-<Route    path='/incident' element={<IncidentPage/>}   ></Route>
-<Route path="/incident-list" element={<IncidentList/>}    ></Route>
+      <Route path="/listing-employees" element={<ListingEmployees />}></Route>
+      <Route path="/training-list" element={<TrainingList />}></Route>
+      <Route path="/video-list" element={<TrainingVideoList />}></Route>
+      <Route path="/incident" element={<IncidentPage />}></Route>
+      <Route path="/team-listing" element={<TeamListing />}></Route>
+      <Route path="/incident-list" element={<IncidentList />}></Route>
+      <Route path="/team-list" element={<TeamList />}></Route>
+      <Route path="/vehicle-list" element={<VehicleList />}></Route>
+      <Route  path="employeevideo-list"  element={<EmployeeTrainingList/>} ></Route>
+<Route  path="/employee-dash" element={      <EmployeeDashboard/> }    ></Route>
     </Routes>
   </BrowserRouter>
 );

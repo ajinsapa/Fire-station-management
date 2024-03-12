@@ -30,7 +30,8 @@ background-color: beige;
   .box {
     width: 200px;
 
-   
+    background-image: url("https://i.postimg.cc/0jz13W7P/DSCF1932-MFRS.webp");
+ 
     background-color: white;
     border-radius: 20px; /* for the curve effect */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 

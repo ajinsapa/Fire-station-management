@@ -1,0 +1,18 @@
+.b1{
+ margin-top: 200px;
+}
+.b2{
+    margin-top: -100px;
+}
+.b3{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.b4{
+    margin-left: 50px;
+}
+.b5{
+    margin-bottom: 100px;
+    margin-left: 70px;
+}

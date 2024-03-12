@@ -15,7 +15,7 @@ function IncidentPage({ name, ...props }) {
       </div>
 
       
-<Container  className="container-incident  mb-2 mt-5"  >
+<Container    className="container-incident  mb-2 mt-5"  >
 
 
 
