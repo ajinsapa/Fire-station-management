@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './StationDashboard.css'
 import { Col, Row } from 'reactstrap'
@@ -11,8 +11,28 @@ import StationCard from './StationCard'
 
 
 function StationDashboard() {
+
+
+const [token,setToken]=useState("")
+
+
+useEffect(()=>{
+if(localStorage.getItem("token")){
+  setToken(localStorage.getItem("token"))
+}
+else{
+  setToken("")
+}
+
+
+},[])
+
+
+
+
+
   return (
-    <div  style={{backgroundColor:"black"}}   >
+    <div className='bac'  style={{backgroundColor:"black"}}   >
 
 
 

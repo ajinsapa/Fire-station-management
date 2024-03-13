@@ -3,7 +3,7 @@
 
    text-align: center;
         display: flex;
-        width: 30%;
+        width: 70%;
         margin-left: 100px;
         margin-top: 50px;
 border: 2px orange solid;
@@ -16,6 +16,6 @@ border: 2px orange solid;
 }
 .vehicle2{
 background-color: beige;
-height: 100vh;
+height: 800vh;
     
 }

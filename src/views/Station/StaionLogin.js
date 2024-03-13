@@ -111,6 +111,12 @@ console.log(result);
 
 if(result.status==200){
 setStationLogin({username:"",password:""})
+//store data in local storage
+
+localStorage.setItem("token",result.data.token)
+console.log(result);
+
+
 alert("Login Success")
 toast.success('Login Success!', {
   position: "top-center",

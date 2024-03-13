@@ -1,7 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
+import { getAllEmployeeListApi } from 'views/Services/AllApis';
 function EmployeeTable() {
+
+const[employeeList,setEmployeeList]=useState(null)
+
+const getEmployeeList=async()=>{
+  if(localStorage.getItem("token")){
+
+const token=localStorage.getItem("token")
+
+const reqHeader = {
+  Authorization: `Token ${token}`,
+};
+const result= await getAllEmployeeListApi(reqHeader)
+setEmployeeList(result.data)
+
+  }
+}
+useEffect(()=>{
+
+
+  getEmployeeList()
+},[])
+
+if(employeeList === null) return(<></>)
+
+console.log(employeeList);
+
+
+
+
+
+
+
+
+
+
   return (
+
+    <div> 
+
+
+      
     <div   className='table m-5' >
 
 
@@ -16,28 +57,20 @@ function EmployeeTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Ajinsa P A</td>
-          <td>7012159314</td>
-          <td>ajinsaashik008@gmail.com</td>
+        {employeeList.map((i,index)=>(
+          <tr>
+          <td>{index+1}</td>
+          <td>{i.name}</td>
+          <td>{i.phone}</td>
+          <td>{i.email_address}</td>
           <td>
 
           <i class="fa-solid fa-trash"  style={{color:"red"}} ></i>
 
           </td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Parvathy Raju</td>
-          <td>1234567891</td>
-          <td>parvathy@gmail.com</td>
-          <td>
-
-          <i class="fa-solid fa-trash"  style={{color:"red"}} ></i>
-
-          </td>
-        </tr>
+        ))}
+       
 
       </tbody>
     </Table>
@@ -54,7 +87,7 @@ function EmployeeTable() {
 
 
 
-
+    </div>
 
     </div>
   )

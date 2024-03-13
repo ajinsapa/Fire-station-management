@@ -7,10 +7,18 @@
 .f1{
 
     background-image: url("https://i.postimg.cc/sXmDkdsm/Fire-safety-training-for-employees.jpg");
-    height: 100vh;
+    height: 200vh;
     background-size: cover;
     
     }
     .p{
         margin-left: 100px;
     }
+    .highlighted-header {
+        color:red;
+        background-color: white;
+        width: 50%;
+     justify-content: center;
+     margin-left: 360px;
+      }
+      

@@ -37,3 +37,20 @@ export const stationLoginApi=async(data)=>{
   export const userLoginApi=async(data)=>{
     return await commonApi('POST',`${Base_Url}/userapi/token/`,data,"")
   }
+//station
+
+export const getAllEmployeeListApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/employees/`,"",header)
+}
+
+export const addTeamCreationApi=async(data,header)=>{
+  return await commonApi('POST',`${Base_Url}/stationapi/team/`,data,header)
+}
+export const getVehicleListApi=async(header)=>{
+return await commonApi('GET',`${Base_Url}/stationapi/vehicle/`,"",header)
+
+}
+
+export const getEquipmentApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/equipments/`,"",header)
+}
