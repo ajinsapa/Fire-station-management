@@ -37,7 +37,7 @@ function LandingPage() {
               <Col className="ml-auto mr-auto text-center" md="8">
                 <h2 className="title">Who we are?</h2>
                 <h5 className="description">
-               <b> Welcome to Nova Fire And Rescue Services, your trusted partner in fire protection and emergency response solutions. As a leading provider of private fire station services, we are dedicated to safeguarding lives, property, and assets with our expertise, innovation, and commitment to excellence.
+               <b className="text-black" > Welcome to Nova Fire And Rescue Services, your trusted partner in fire protection and emergency response solutions. As a leading provider of private fire station services, we are dedicated to safeguarding lives, property, and assets with our expertise, innovation, and commitment to excellence.
 <br /> <br />
 At Nova, we understand the importance of proactive fire prevention, rapid emergency response, and effective risk management. Our team of highly trained professionals specializes in providing comprehensive fire protection services tailored to the unique needs and challenges of our clients.
 <br /> <br />

@@ -48,6 +48,7 @@ import TeamList from "views/Station/TeamMnagement/TeamList";
 import VehicleList from "views/Station/VehicleList/VehicleList";
 import EmployeeDashboard from "views/Employee/EmployeeDashboard";
 import EmployeeTrainingList from "views/Employee/EmployeeTrainingList";
+import UserIncident from "views/examples/UserIncident";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -78,11 +79,13 @@ root.render(
       <Route path="/video-list" element={<TrainingVideoList />}></Route>
       <Route path="/incident" element={<IncidentPage />}></Route>
       <Route path="/team-listing" element={<TeamListing />}></Route>
-      <Route path="/incident-list" element={<IncidentList />}></Route>
+      <Route path="/incident-list/:id" element={<IncidentList />}></Route>
       <Route path="/team-list" element={<TeamList />}></Route>
       <Route path="/vehicle-list" element={<VehicleList />}></Route>
       <Route  path="employeevideo-list"  element={<EmployeeTrainingList/>} ></Route>
 <Route  path="/employee-dash" element={      <EmployeeDashboard/> }    ></Route>
+<Route  path="/user-incident" element={< UserIncident/>
+} ></Route>
     </Routes>
   </BrowserRouter>
 );

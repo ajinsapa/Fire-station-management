@@ -5,8 +5,69 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Accordion from 'react-bootstrap/Accordion';
 import './IncidentList.css'
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getResourceApi } from "views/Services/AllApis";
+import { getIncidentListApi } from "views/Services/AllApis";
 
-function IncidentPage({ name, ...props }) {
+function IncidentPage() {
+
+  const[resource,setResource]=useState(null)
+
+const[incidentList,setIncidentList]=useState(null)
+
+
+
+const getIncidentList=async()=>{
+if(localStorage.getItem("token")){
+  const token=localStorage.getItem("token")
+const reqHeader={
+  Authorization:`Token ${token}`,
+}
+
+const result= await getIncidentListApi(reqHeader)
+setIncidentList(result.data)
+
+   
+}
+
+
+
+}
+
+useEffect(()=>{
+
+  getIncidentList()
+  
+  
+  },[])
+ 
+
+
+  const getResource=async()=>{
+if(localStorage.getItem("token")){
+  const token=localStorage.getItem("token")
+  const reqHeader={
+    Authorization:`Token ${token}`
+  }
+
+  const result=await getResourceApi(reqHeader)
+
+setResource(result.data)
+  
+
+}
+
+
+  }
+useEffect(()=>{
+
+
+  getResource()
+},[])
+if(resource === null) return(<></>)
+console.log(resource);
+if(incidentList === null) return(<></>)
+console.log(incidentList);
 
   return (
     <div className="ef">
@@ -30,29 +91,36 @@ function IncidentPage({ name, ...props }) {
             </Accordion.Header>
         <Accordion.Body>
           
+           {
+
+resource.map((i=>(  
         <ListGroup>
             <ListGroup.Item>
               {" "}
-              <b>Equipment:</b> Oxygen Tank
+              <b>Equipment:</b>  {i.name}
             </ListGroup.Item>
             <ListGroup.Item>
               {" "}
-              <b>Quantity:</b>20{" "}
+              <b>Quantity:</b>{i.quantity}
             </ListGroup.Item>
             <ListGroup.Item>
               {" "}
-              <b>Maintenance:</b>Annual inspection
+              <b>Maintenance:</b>{i.maintenance_record}
             </ListGroup.Item>
             <ListGroup.Item>
               {" "}
-              <b>Expiration:</b>2025-06-15
+              <b>Expiration:</b>{i.expiration_date}
             </ListGroup.Item>
             <ListGroup.Item>
               {" "}
-              <b>Availability:</b>Available
+              <b>Availability:</b>{i.is_available?"🟢":"🔴"}
             </ListGroup.Item>
+            <hr />
           </ListGroup>
+          
+          )))
 
+        }
         </Accordion.Body>
       </Accordion.Item>
 
@@ -74,15 +142,22 @@ function IncidentPage({ name, ...props }) {
             <b   style={{color:"red",backgroundColor:"white"}} >Incident List </b>
             </Accordion.Header>
         <Accordion.Body>
-          <Link  style={{textDecoration:"none"}} to="/incident-list" > 
+          
+          { incidentList.map((i=>(
+
+<Link  style={{textDecoration:"none"}} to={`/incident-list/${i.id}`} > 
         <ListGroup>
-        <ListGroup.Item><b   style={{color:"black"}} >Date and Time:</b> 2024-02-19T18:40:00Z</ListGroup.Item>
-            <ListGroup.Item><b style={{color:"black"}}  >Location:</b> Kadavanthra, ernakulam</ListGroup.Item>
-            <ListGroup.Item><b style={{color:"black"}}  >Type:</b> Fire</ListGroup.Item>
-            <ListGroup.Item><b style={{color:"black"}}  >Intensity:</b> High</ListGroup.Item>
-            <ListGroup.Item><b style={{color:"black"}}  >Description:</b> A car got on fire due to overheating while travelling</ListGroup.Item>
+        <ListGroup.Item><b   style={{color:"black"}} >Date and Time:</b>{i.date_time} </ListGroup.Item>
+            <ListGroup.Item><b style={{color:"black"}}  >Location:</b> {i.location
+}</ListGroup.Item>
+            <ListGroup.Item><b style={{color:"black"}}  >Type:</b> {i.type}</ListGroup.Item>
+            <ListGroup.Item><b style={{color:"black"}}  >Intensity:</b>{i.severity}</ListGroup.Item>
+            <ListGroup.Item><b style={{color:"black"}}  >Description:</b> {i.description}</ListGroup.Item>
+         <hr />
           </ListGroup>
           </Link>
+              )))    }
+          
         </Accordion.Body>
       </Accordion.Item>
 

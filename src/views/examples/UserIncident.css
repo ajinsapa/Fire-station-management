@@ -1,0 +1,21 @@
+.user{
+   
+
+    text-align: center;
+         display: flex;
+         width: 70%;
+         margin-left: 100px;
+         margin-top: 50px;
+ border: 2px  red  solid;
+         margin-bottom: px;
+         padding: 10px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+         transition: box-shadow 0.3s ease; /* Smooth transition for the shadow effect */
+       
+ 
+ }
+ .user2{
+ background-color: beige;
+ height: 800vh;
+     
+ }

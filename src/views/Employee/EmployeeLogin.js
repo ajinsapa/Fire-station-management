@@ -177,7 +177,7 @@ const EmployeeLogin = () => {
   return (
     <div   className="body11" >
       <EmployeeNav></EmployeeNav>
-      <div className=" s">
+      <div className=" s  text-white">
         <div className="login-wrap mt-5">
           <div className="login-html">
             <input

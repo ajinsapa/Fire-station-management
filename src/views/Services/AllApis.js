@@ -54,3 +54,31 @@ return await commonApi('GET',`${Base_Url}/stationapi/vehicle/`,"",header)
 export const getEquipmentApi=async(header)=>{
   return await commonApi('GET',`${Base_Url}/stationapi/equipments/`,"",header)
 }
+export const getResourceApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/equipments/`,"",header)
+}
+
+export const getIncidentListApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/incidents/`,"",header)
+}
+export const getTrainingStatusApi=async()=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/trainingstatus/`,"","")
+}
+export const getTrainingVideosApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/trainings/`,"",header)
+}
+export const getIncidentStatusApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/incidentstatus/`,"",header)
+
+}
+export const getSingleIncidentListApi=async(id,header)=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/incidents/${id}/`,"",header)
+}
+
+
+
+//employee
+
+export const getEmployeeTrainingVideos=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/employeeapi/traininglist/`,"",header)
+}

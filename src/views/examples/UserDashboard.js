@@ -6,8 +6,6 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Button, Col, Row } from 'reactstrap';
 import Form from 'react-bootstrap/Form';
-import Dropdown from 'react-bootstrap/Dropdown';
-
 
 const UserDashboard = () => {
 
@@ -41,22 +39,26 @@ const UserDashboard = () => {
   <div style={{ flex: 3, backgroundColor: "beige", paddingTop: '20px' }}>
     
   </div>
-  <div style={{ backgroundColor: "beige", paddingTop: '20px',display:"flex" }}  className='b3' >  
+  <div style={{ backgroundColor: "beige", paddingTop: '20px',display:"flex" }}  className='b3  text-dark' >   
   
 
     <p>
     <h2  className='mt-5 text-center'  style={{color:"brown"}}>Report an Incident </h2>
       
-    <p>Welcome to our incident reporting platform for the <b>  Nova Fire and Rescue Services    </b>. 
+     <p  className='text-black '>  <b> Welcome to our incident reporting platform for the <b>  Nova Fire and Rescue Services    </b>. 
       Here, you can easily register any incidents or emergencies you encounter within our jurisdiction. Your prompt reporting helps us respond quickly and effectively to ensure the safety and well-being of our community.
 
 Whether it's a fire outbreak, medical emergency, hazardous material spill, or any other incident requiring our attention, your report plays a crucial role in our emergency response efforts.
- </p>  
-<p>Our team of trained professionals is dedicated to providing swift assistance and resolving incidents efficiently. By registering incidents through our platform, you contribute to the collective effort of keeping our neighborhoods safe and secure.
+</b></p>  
 
-Thank you for your cooperation and commitment to ensuring the safety of everyone in our community. Let's work together to make a difference and protect lives.</p>
+
+
+<p> 
+<b>  Our team of trained professionals is dedicated to providing swift assistance and resolving incidents efficiently. By registering incidents through our platform, you contribute to the collective effort of keeping our neighborhoods safe and secure.
+
+Thank you for your cooperation and commitment to ensuring the safety of everyone in our community. Let's work together to make a difference and protect lives. </b> </p>
  
-   </p> </div>
+ </p> </div>
 </div>
     <div  className="b2  "   style={{  justifyContent: 'center', alignItems: 'center',display:"flex" ,height: '100vh',backgroundColor:"beige" }}>
       <div style={{ width: '80%', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gridGap: '20px' }}>
@@ -88,7 +90,7 @@ Thank you for your cooperation and commitment to ensuring the safety of everyone
 
 
         <div style={{ backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
-        <Link   style={{textDecoration:"none"}}   > 
+        <Link to="/user-incident"   style={{textDecoration:"none"}}   > 
         
 
 
@@ -98,23 +100,9 @@ Thank you for your cooperation and commitment to ensuring the safety of everyone
             <img className='b5'  style={{height:"130px"}} src="https://i.postimg.cc/yx2Jz89v/png-clipart-firefighter-structure-fire-fire-station-fireman-burning-photography-thumbnail-removebg-p.png " alt="" />
           
           
+            <h6  className='text-center' > Incident Status</h6>
 
-
-            <Dropdown>
-      <Dropdown.Toggle variant="primary" id="dropdown-basic">
-   Check Your Incident Status Here 
-      </Dropdown.Toggle>
-
-
-      <Dropdown.Menu>
-        <Dropdown.Item>Name:</Dropdown.Item>
-        <Dropdown.Item >  Status: 
-
-        </Dropdown.Item>
-      
-
-      </Dropdown.Menu>
-    </Dropdown>
+           
 
 
 

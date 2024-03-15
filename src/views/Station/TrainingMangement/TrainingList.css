@@ -11,9 +11,9 @@ color: rgb(255, 252, 249);
 }
 .m1{
 
-background-image: url("https://i.postimg.cc/nLS8vRLM/Bdbusinessfinder.jpg");
+background-image: url("https://i.postimg.cc/HWrBZ0b6/A-black-image.jpg");
 background-size: cover;
-height: 200vh;
+/* height: 200vh; */
 
 }
 .animated-button {
@@ -21,11 +21,12 @@ height: 200vh;
     overflow: hidden;
     border: none;
     outline: none;
-    background: #4CAF50; /* Button background color */
+    background:orange; /* Button background color */
     color: white; /* Button text color */
-    padding: 10px 20px; /* Button padding */
+    /* padding: 10px 20px; Button padding */
     font-size: 16px; /* Button font size */
     cursor: pointer;
+    margin-left: 1000px;
   }
   
   .animated-button::after {
