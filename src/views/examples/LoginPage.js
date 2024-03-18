@@ -97,6 +97,10 @@ const navigate=useNavigate()
     
     if(result.status==200){
     setULogin({username:"",password:""})
+
+    localStorage.setItem("token",result.data.token)
+    console.log(result);
+
     alert("Login Success!!")
     toast.success('Login Success!', {
       position: "top-center",

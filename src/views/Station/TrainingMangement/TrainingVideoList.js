@@ -8,8 +8,81 @@ import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Base_Url } from "views/Services/Base_Url";
+import { addTrainingVideosApi } from "views/Services/AllApis";
 
 function TrainingVideoList() {
+
+  const[token,setToken]=useState("")
+
+const[addTrainingVideos,setAddTrainingVideos]=useState({
+  name:"",
+  video:"",
+  video_duration:""
+})
+
+const setaddInputs = (e) => {
+  const { value, name, files } = e.target;
+  if (name === 'video' && files.length > 0) {
+    setAddTrainingVideos({ ...addTrainingVideos, [name]: files[0] });
+  } else {
+    setAddTrainingVideos({ ...addTrainingVideos, [name]: value });
+  }
+};
+
+
+
+console.log(addTrainingVideos);
+
+const handleAddVidoes = async (e) => {
+  e.preventDefault();
+  const { name, video,video_duration } = addTrainingVideos;
+  if (!name || !video||!video_duration) {
+    alert("Please fill all data");
+  } else {
+    const reqHeader = {
+      Authorization: `Token ${token}`,
+    };
+
+    const reqBody = new FormData();
+    reqBody.append("name", name);
+    reqBody.append("video", video);
+    reqBody.append("video_duration", video_duration);
+
+    const result = await addTrainingVideosApi(reqBody, reqHeader);
+    console.log(result);
+    if (result.status === 200) {
+      alert(`${result.data.name} is added`);
+      handleClose();
+      setAddTrainingVideos({ ...addTrainingVideos, name: "", video: "",video_duration:"" });
+      getTrainingVideos();
+    } else {
+      alert(result.response.data);
+    }
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+useEffect(()=>{
+
+if(localStorage.getItem("token")){
+  setToken(localStorage.getItem("token"))
+}
+
+
+},[])
+
+console.log(token);
+
+
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -65,15 +138,27 @@ function TrainingVideoList() {
           <Modal.Title className='text-center p-2 modal11'>Training Sessions</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FloatingLabel controlId="floatingInput" label="" className="flow">
-            <Form.Control type="text" placeholder="Video Name" />
+          <FloatingLabel controlId="floatingInput" label="Video Name" className="flow">
+            <Form.Control type="text"  
+           name={"name"} onChange={(e)=>setaddInputs(e)} />
           </FloatingLabel>
-          <FloatingLabel controlId="floatingPassword" label="">
-            <Form.Control type="text" placeholder="Video Url" name='videoUrl' />
+          <FloatingLabel controlId="floatingVideo" >
+  <input
+    type="file"
+    className="form-control"
+    id="floatingVideo"
+    name="video"
+    onChange={(e) => setaddInputs(e)}
+    accept="video/*"
+  />
+</FloatingLabel>
+<FloatingLabel controlId="floatingInput" label="Video duration" className="flow">
+            <Form.Control type="text"  
+           name={"video_duration"} onChange={(e)=>setaddInputs(e)} />
           </FloatingLabel>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" className='m-2' style={{ backgroundColor: 'brown' }} onClick={handleClose}>Add</Button>
+          <Button variant="primary" className='m-2' style={{ backgroundColor: 'brown' }  }  onClick={(e)=>{handleAddVidoes(e)}}  >Add</Button>
           <Button className='bg-danger' variant="secondary" onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>

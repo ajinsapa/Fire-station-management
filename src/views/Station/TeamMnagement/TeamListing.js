@@ -94,10 +94,10 @@ const TeamListing = () => {
       });
       const result = await addTeamCreationApi(reqBody, reqHeader);
       console.log(result);
-      if(result.status==200){
-        alert(`${result.data.name}is created`)
-        handleClose()
-        setTeam({...team,name:"",employees:[]})
+      if (result.status == 200) {
+        alert(`${result.data.name}is created`);
+        handleClose();
+        setTeam({ ...team, name: "", employees: [] });
       }
     }
   };
@@ -160,7 +160,7 @@ const TeamListing = () => {
             <Button variant="" className="button1" onClick={decrementEmployees}>
               <i className="fa-sharp fa-solid fa-minus icon"></i>
             </Button>
-          
+
             {forms.map((form) => form)}
           </FloatingLabel>
         </Modal.Body>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import './VehicleList.css';
 import StationNav from '../StationNav';
 import { getVehicleListApi } from 'views/Services/AllApis';
 
@@ -36,7 +35,6 @@ function VehicleList() {
               <ListGroup.Item> <b>Vehicle Name </b> : {i.vehicle_type}</ListGroup.Item>
               <ListGroup.Item>  <b> No</b> : {i.plate_number}</ListGroup.Item>
               <ListGroup.Item> <b>Availability</b>: {i.is_available?"🟢":"🔴"}</ListGroup.Item>
-              <ListGroup.Item> <b>Equipments</b>: {i.equipment_inventory}</ListGroup.Item>
             </ListGroup>
           </div>
         ))}

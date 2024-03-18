@@ -16,10 +16,13 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+
   }
   
   .card-body2 {
     flex-grow: 1;
+    height: 100%;
+
   }
   .but{
     margin-top: 20px;
