@@ -1,44 +1,62 @@
-import React from 'react'
-import StationNav from '../StationNav'
-import './TeamList.css'
-import ListGroup from 'react-bootstrap/ListGroup';
-
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Col, Container, Row } from "react-bootstrap";
+import Card from 'react-bootstrap/Card';
+import StationNav from "../StationNav";
+import "./TeamList.css";
 
 function TeamList() {
-  return (
-    <div   style={{backgroundColor:"beige"}} >
-<StationNav></StationNav>
-    <div className=' team   '  style={{ border: '5px solid red',backgroundColor:"beige" }}>
-      <h2 style={{ textAlign: 'center',color:"black" }}>Teams</h2>
-      
-      <div   className='list2'>
+    const [teams, setTeams] = useState([]);
+    const token = localStorage.getItem("token");
 
-<ListGroup  style={{textAlign:"center"}}  >
-<ListGroup.Item> <b  style={{color:"red"}} >Name:</b>     Team 1</ListGroup.Item>
-<ListGroup.Item><b style={{color:"red"}} >Employees:</b>  4</ListGroup.Item>
-</ListGroup>
+    const getTeams = async () => {
+        try {
+            const result = await axios.get(`http://127.0.0.1:8000/stationapi/team/`, {
+                headers: {
+                    Authorization: `Token ${token}`
+                }
+            });
+            setTeams(result.data);
+            console.log(teams);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-</div>
-      
+    useEffect(() => {
+        getTeams();
+    }, []);
+
+    return (
+        <div style={{ backgroundColor: "beige" }}>
+            <StationNav />
+            <Container>
+                <div className="team-list-container">
+                    <h2 className="team-list-heading text-center">Teams</h2>
+                    <Row>
+                        {teams.map((team, index) => (
+                            <Col lg={3} key={index}>
+                                <TeamCard team={team} />
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
+            </Container>
         </div>
-       
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-  )
+    );
 }
 
-export default TeamList
+function TeamCard({ team }) {
+    return (
+        <Card>
+           
+            <Card.Body>
+                <Card.Title> <b> Team Name:</b>  {team.name}</Card.Title>
+                <Card.Title> <b>Employees: </b>   {team.employees.join(", ")}</Card.Title>
+
+            </Card.Body>
+        </Card>
+    );
+}
+
+export default TeamList;

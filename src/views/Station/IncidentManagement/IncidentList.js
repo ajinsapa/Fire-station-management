@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 import { getResourceApi } from 'views/Services/AllApis';
 import { getIncidentListApi } from 'views/Services/AllApis';
 import { getSingleIncidentListApi } from 'views/Services/AllApis';
+import axios from 'axios';
 
 
 
@@ -24,13 +25,31 @@ function IncidentList() {
   const [data,setData] = useState(null)
   const token=localStorage.getItem("token")
   const [showModal, setShowModal] = useState(false);
+  const [statusChnage,setStatusChange] = useState(null)
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
     const [status, setStatus] = useState(false);
   
-    const handleStatusChange = () => {
+    const handleStatusChange = async() => {
+      const status = "Completed"
+      try {
+        const result  = await axios.post(`http://127.0.0.1:8000/stationapi/incidents/${data?.incident?.id}/incident_status/`,{status},{
+          headers:{
+            Authorization:`Token ${token}`
+          }
+        })
+        if(result.status === 200 ){
+          console.log(result);
+          setStatusChange(result.data)
+          getListData()
+          alert("statusChnaged")
+          
+        }
+      } catch (error) {
+        console.log(error);
+      }
       setShowModal(true)
        // Toggles the status between true and false
     };
@@ -44,7 +63,11 @@ function IncidentList() {
         const reqHeader={
           Authorization:`Token ${token}`
         }
-        const result=await getSingleIncidentListApi(id,reqHeader)
+        const result=await axios.get(`http://127.0.0.1:8000/stationapi/incidents/${id}/`,{
+          headers:{
+            Authorization:`Token ${token}`
+          }
+        })
         console.log(result);
         setData(result.data)
         
@@ -57,13 +80,13 @@ if(data == null ) return(<></>)
       <StationNav />
       <div className='m-5 a5'>
         <ListGroup className="custom-list mt-5"  onClick={handleShowModal} >
-          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}>Date and Time :</b>  {data?.date_time
+          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}>Date and Time :</b>  {data?.incident?.date_time
 }</ListGroup.Item>
-          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}>Location :</b> {data?.location
+          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}>Location :</b> {data?.incident?.location
 }</ListGroup.Item>
-          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}> Type: </b> {data?.type}</ListGroup.Item>
-          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}> Intensity:</b>{data?.severity } </ListGroup.Item>
-          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}> Description: </b>  {data?.description
+          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}> Type: </b> {data?.incident?.type}</ListGroup.Item>
+          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}> Intensity:</b>{data?.incident?.severity } </ListGroup.Item>
+          <ListGroup.Item className="custom-list-item"><b style={{ color: "Orange" }}> Description: </b>  {data?.incident?.description
 }</ListGroup.Item>
         </ListGroup>
        
@@ -75,11 +98,11 @@ if(data == null ) return(<></>)
         </Modal.Header>
         <Modal.Body>
          <ListGroup>
-            <ListGroup.Item><b   style={{color:"black"}} >Date and Time:</b> {data?.date_time}</ListGroup.Item>
-            <ListGroup.Item><b style={{color:"black"}}  >Location:</b>{data?.location}</ListGroup.Item>
-            <ListGroup.Item><b style={{color:"black"}}  >Type:</b> {data?.type}</ListGroup.Item>
-            <ListGroup.Item><b style={{color:"black"}}  >Intensity:</b> {data?.severity }h</ListGroup.Item>
-            <ListGroup.Item><b style={{color:"black"}}  >Description:</b> {data?.description} </ListGroup.Item>
+            <ListGroup.Item><b   style={{color:"black"}} >Date and Time:</b> {data?.incident?.date_time}</ListGroup.Item>
+            <ListGroup.Item><b style={{color:"black"}}  >Location:</b>{data?.incident?.location}</ListGroup.Item>
+            <ListGroup.Item><b style={{color:"black"}}  >Type:</b> {data?.incident?.type}</ListGroup.Item>
+            <ListGroup.Item><b style={{color:"black"}}  >Intensity:</b> {data?.incident?.severity }h</ListGroup.Item>
+            <ListGroup.Item><b style={{color:"black"}}  >Description:</b> {data?.incident?.description} </ListGroup.Item>
           </ListGroup>
         </Modal.Body>
         <Modal.Footer>
@@ -95,9 +118,10 @@ if(data == null ) return(<></>)
         
         style={{backgroundColor:"Red",color:"White"}
     }
-        label={status ? "Completed 👍 ": "Pending 😊"}
-        checked={status}
-        onChange={handleStatusChange}
+        label={data?.incident_status
+          ? "Completed 👍 ": "Pending 😊"}
+        checked={data?.incident_status === "Completed"}
+        onChange={()=>handleStatusChange(data.id)}
       />
     </Form>
         </Modal.Footer>

@@ -6,17 +6,14 @@ import Form from "react-bootstrap/Form";
 import { Button } from "reactstrap";
 import Modal from "react-bootstrap/Modal";
 import { addTeamCreationApi } from "views/Services/AllApis";
+import axios from "axios";
 
 const TeamListing = () => {
   // token
-  const [token, setToken] = useState("");
+  const token = localStorage.getItem("token")
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
-    } else {
-      setToken("");
-    }
+    getEmployee()
   }, []);
 
   // team creation
@@ -24,6 +21,24 @@ const TeamListing = () => {
     name: "",
     employees: [],
   });
+  const [employee, setEmployee] = useState(null)
+  console.log();
+
+  const getEmployee = async () => {
+    try {
+      const result = await axios.get(`http://127.0.0.1:8000/stationapi/team/available_employees/`, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      })
+      if (result.status === 200) {
+        console.log(result.data);
+        setEmployee(result.data)
+      }
+    } catch (error) {
+
+    }
+  }
 
   const setTeamInput = (e) => {
     const { value, name } = e.target;
@@ -49,18 +64,18 @@ const TeamListing = () => {
           <Form.Label>Select Employees</Form.Label>
           <Form.Control
             as="select"
-            value={team.employees}
+            value={team.employees[prevForms.length] || ""}
             name="employees"
             onChange={(e) => {
               setTeamInput(e);
             }}
           >
             <option value="">Select Employees</option>
-            {/* Add options dynamically based on employees data */}
-            <option value="1">Employee 1</option>
-            <option value="2">Employee 2</option>
-            <option value="3">Employee 3</option>
-            {/* Add more options if needed */}
+            {
+              employee != null ? employee.map((i) => (
+                <option key={i.id} value={i.id}>Employee {i.id}</option>
+              )) : <></>
+            }
           </Form.Control>
         </Form.Group>
       </Form>,
@@ -86,18 +101,20 @@ const TeamListing = () => {
       const reqHeader = {
         Authorization: `Token ${token}`,
       };
-      // body
-      const reqBody = new FormData();
-      reqBody.append("name", name);
-      employees.forEach((employee) => {
-        reqBody.append("employees", employee);
-      });
-      const result = await addTeamCreationApi(reqBody, reqHeader);
-      console.log(result);
-      if (result.status == 200) {
-        alert(`${result.data.name}is created`);
-        handleClose();
-        setTeam({ ...team, name: "", employees: [] });
+      const reqBody = {
+        name: name,
+        employees: employees
+      };
+      try {
+        const result = await addTeamCreationApi(reqBody, reqHeader);
+        console.log(result);
+        if (result.status === 200) {
+          alert(`${result.data.name} is created`);
+          handleClose();
+          setTeam({ ...team, name: "", employees: [] });
+        }
+      } catch (error) {
+        console.error("Error creating team:", error);
       }
     }
   };
@@ -114,22 +131,21 @@ const TeamListing = () => {
         }}
       >
         <h2 style={{ textAlign: "center", color: "black" }}>Assign Team</h2>
-        <FloatingLabel style={{ color: "black" }} controlId="floatingPassword">
+        <FloatingLabel style={{ color: "black" }} controlId="incidentNumber">
           <Form.Control type="number" placeholder="Incident Number" />
         </FloatingLabel>
-        <FloatingLabel style={{ color: "black" }} controlId="floatingPassword">
-          <Form.Control type="text" placeholder="Team Name" />
+        <FloatingLabel style={{ color: "black" }} controlId="teamName">
+          <Form.Control
+            type="text"
+            placeholder="Team Name"
+            value={team.name}
+            onChange={(e) => setTeamInput(e)}
+            name="name"
+          />
         </FloatingLabel>
-        <div
-          className="d-flex justify-content-between"
-          style={{ marginTop: "150px" }}
-        >
-          <Button style={{ backgroundColor: "red" }} href="/team-list">
-            Teams
-          </Button>
-          <Button onClick={handleShow} style={{ backgroundColor: "red" }}>
-            Team Creation
-          </Button>
+        <div className="d-flex justify-content-between" style={{ marginTop: "150px" }}>
+          <Button style={{ backgroundColor: "red" }} href="/team-list">Teams</Button>
+          <Button onClick={handleShow} style={{ backgroundColor: "red" }}>Team Creation</Button>
           <Button style={{ backgroundColor: "red" }}>Add</Button>
         </div>
       </div>
@@ -138,47 +154,28 @@ const TeamListing = () => {
           <Modal.Title style={{ color: "red" }}>Team Creation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FloatingLabel
-            style={{ color: "black" }}
-            controlId="floatingPassword"
-          >
+          <FloatingLabel style={{ color: "black" }} controlId="teamNameModal">
             <Form.Control
-              name="name"
-              onChange={(e) => setTeamInput(e)}
               type="text"
-              placeholder="Team Name "
+              placeholder="Team Name"
               value={team.name}
+              onChange={(e) => setTeamInput(e)}
+              name="name"
             />
           </FloatingLabel>
-          <FloatingLabel
-            style={{ color: "black" }}
-            controlId="floatingPassword"
-          >
+          <FloatingLabel style={{ color: "black" }} controlId="employeeSelect">
             <Button className="button1" variant="" onClick={incrementEmployees}>
               <i className="fa-sharp fa-solid fa-plus icon"></i>
             </Button>
             <Button variant="" className="button1" onClick={decrementEmployees}>
               <i className="fa-sharp fa-solid fa-minus icon"></i>
             </Button>
-
             {forms.map((form) => form)}
           </FloatingLabel>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            style={{ backgroundColor: "red" }}
-            variant="secondary"
-            onClick={handleClose}
-          >
-            Close
-          </Button>
-          <Button
-            onClick={(e) => handleCreateTeam(e)}
-            style={{ backgroundColor: "red" }}
-            variant="primary"
-          >
-            Create
-          </Button>
+          <Button style={{ backgroundColor: "red" }} variant="secondary" onClick={handleClose}>Close</Button>
+          <Button onClick={(e) => handleCreateTeam(e)} style={{ backgroundColor: "red" }} variant="primary">Create</Button>
         </Modal.Footer>
       </Modal>
     </div>

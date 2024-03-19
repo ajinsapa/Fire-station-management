@@ -15,6 +15,7 @@ function Incident() {
             };
 
             const result = await getIncidentListApi(reqHeader);
+            
             setIncidentList(result.data);
         }
     };
@@ -31,22 +32,22 @@ function Incident() {
 
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                 {incidentList.map((incident) => (
-                    <Link key={incident.id} style={{ textDecoration: 'none', width: '30%' }} to={`/incident-list/${incident.id}`}>
+                    <Link key={incident.id} style={{ textDecoration: 'none', width: '30%' }} to={`/incident-list/${incident?.incident?.id}`}>
                         <ListGroup>
                             <ListGroup.Item>
-                                <b style={{ color: 'black' }}>Date and Time:</b> {incident.date_time}
+                                <b style={{ color: 'black' }}>Date and Time:</b> {incident?.incident?.date_time}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <b style={{ color: 'black' }}>Location:</b> {incident.location}
+                                <b style={{ color: 'black' }}>Location:</b> {incident?.incident?.location}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <b style={{ color: 'black' }}>Type:</b> {incident.type}
+                                <b style={{ color: 'black' }}>Type:</b> {incident?.incident?.type}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <b style={{ color: 'black' }}>Intensity:</b> {incident.severity}
+                                <b style={{ color: 'black' }}>Intensity:</b> {incident?.incident?.severity}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <b style={{ color: 'black' }}>Description:</b> {incident.description}
+                                <b style={{ color: 'black' }}>Description:</b> {incident?.incident?.description}
                             </ListGroup.Item>
                             <hr />
                         </ListGroup>

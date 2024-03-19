@@ -52,6 +52,7 @@ import UserIncident from "views/examples/UserIncident";
 import StationEquipment from "views/Station/StationEquipment";
 import ResourceMangement from "views/Station/IncidentManagement/ResourceMangement";
 import Incident from "views/Station/IncidentManagement/Incident";
+import EmployeeCart from "views/Employee/EmployeeCart";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -92,7 +93,7 @@ root.render(
 <Route path="/station-equipment" element={<StationEquipment/>} ></Route>
 <Route path="/res-path" element={<ResourceMangement/>} ></Route>
 <Route path="/incident-path" element={<Incident/>} ></Route>
-
+<Route path="/cart" element={<EmployeeCart/>}  ></Route>
     </Routes>
   </BrowserRouter>
 );

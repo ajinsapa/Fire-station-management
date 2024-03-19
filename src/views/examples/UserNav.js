@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './UserNav.css'
 
 
@@ -42,6 +42,12 @@ function UserNav() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
   });
+  const navigate=useNavigate()
+  const handleUserLogout=()=>{
+    localStorage.removeItem("token")
+    navigate("/index")
+  }
+
   return (
     <>
       {collapseOpen ? (
@@ -129,7 +135,17 @@ function UserNav() {
  
                 </NavLink>
               </NavItem>
-              
+              <NavItem  >
+                <NavLink
+                  onClick={handleUserLogout}
+                 
+                >
+                  <i className="now-ui-icons   "></i>
+                  <p                style={{color:'red',fontSize:'large'}}
+  >   <b  >Logout </b>   </p>
+ 
+                </NavLink>
+              </NavItem>
                 
               
               

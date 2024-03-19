@@ -77,7 +77,12 @@ export const getSingleIncidentListApi=async(id,header)=>{
 export const addTrainingVideosApi=async(data,header)=>{
   return await commonApi('POST',`${Base_Url}/stationapi/trainings/`,data,header)
 }
-
+export const getTeamApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/stationapi/team/`,"",header)
+}
+export const delEmployeeApi=async(id,header)=>{
+  return await commonApi('DELETE',`${Base_Url}/stationapi/employees/${id}/`,"",header)
+}
 
 
 //employee
@@ -103,4 +108,7 @@ export const getUserIncidentStatusApi=async(header)=>{
 
 export const addIncidentApi=async(data,header)=>{
   return await commonApi('POST',`${Base_Url}/userapi/incident/`,data,header)
+}
+export const addFeedBackApi=async(id,data,header)=>{
+  return await commonApi('POST',`${Base_Url}/userapi/incident/${id}/feedback_add/`,data,header)
 }

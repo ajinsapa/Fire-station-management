@@ -153,6 +153,9 @@ const EmployeeLogin = () => {
           username: "",
           password: "",
         });
+        localStorage.setItem("token",result.data.token)
+    console.log(result);
+
 
         toast.success("Login Success", {
           position: "top-center",
@@ -176,7 +179,7 @@ const EmployeeLogin = () => {
 
   return (
     <div   className="body11" >
-      <EmployeeNav></EmployeeNav>
+     
       <div className=" s  text-white">
         <div className="login-wrap mt-5">
           <div className="login-html">

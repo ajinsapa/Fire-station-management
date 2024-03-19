@@ -1,12 +1,21 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';;
+import Navbar from 'react-bootstrap/Navbar';import { useNavigate } from 'react-router-dom';
+;
 
 
 
 
 
 function StationNav() {
+
+  const navigate=useNavigate()
+  const handleLogout=()=>{
+    localStorage.removeItem("token")
+    navigate("/index")
+  }
+
+
   return (
     <div  >
 
@@ -17,7 +26,7 @@ function StationNav() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-             <a href="#login " style={{color:"White"}} >Logout</a>
+             <a onClick={handleLogout} style={{color:"White"}} >Logout</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

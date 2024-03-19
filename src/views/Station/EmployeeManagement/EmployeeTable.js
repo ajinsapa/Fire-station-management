@@ -1,25 +1,34 @@
+import { defineLocale } from 'moment';
 import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
+import { Button } from 'reactstrap';
+import { delEmployeeApi } from 'views/Services/AllApis';
 import { getAllEmployeeListApi } from 'views/Services/AllApis';
 function EmployeeTable() {
 
 const[employeeList,setEmployeeList]=useState(null)
-
-const getEmployeeList=async()=>{
-  if(localStorage.getItem("token")){
 
 const token=localStorage.getItem("token")
 
 const reqHeader = {
   Authorization: `Token ${token}`,
 };
+
+const getEmployeeList=async()=>{
+  if(localStorage.getItem("token")){
+
+    const reqHeader = {
+      Authorization: `Token ${token}`,
+    };
+    
+
 const result= await getAllEmployeeListApi(reqHeader)
 setEmployeeList(result.data)
+console.log(result);
 
   }
 }
 useEffect(()=>{
-
 
   getEmployeeList()
 },[])
@@ -28,7 +37,13 @@ if(employeeList === null) return(<></>)
 
 console.log(employeeList);
 
-
+const deleteEmployee = async(e,id)=>{
+  e.preventDefault()
+  const response = await delEmployeeApi(id,reqHeader)
+if(response.status==200){
+  getEmployeeList()
+}
+}
 
 
 
@@ -57,7 +72,7 @@ console.log(employeeList);
         </tr>
       </thead>
       <tbody>
-        {employeeList.map((i,index)=>(
+        {employeeList?.map((i,index)=>(
           <tr>
           <td>{index+1}</td>
           <td>{i.name}</td>
@@ -65,7 +80,7 @@ console.log(employeeList);
           <td>{i.email_address}</td>
           <td>
 
-          <i class="fa-solid fa-trash"  style={{color:"red"}} ></i>
+         <Button className='border-0' style={{backgroundColor:"transparent"}} onClick={(e)=>deleteEmployee(e,i.id)}> <i class="fa-solid fa-trash "  style={{color:"red"}} ></i></Button>
 
           </td>
         </tr>
@@ -74,17 +89,6 @@ console.log(employeeList);
 
       </tbody>
     </Table>
-
-
-
-
-
-
-
-
-
-
-
 
 
     </div>
