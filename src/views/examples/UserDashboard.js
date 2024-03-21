@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import { Button, Col, Row } from 'reactstrap';
 import Form from 'react-bootstrap/Form';
 import { addIncidentApi } from 'views/Services/AllApis';
-
+import Swal from 'sweetalert2'
 const UserDashboard = () => {
   const [token, setToken] = useState('');
 
@@ -62,7 +62,13 @@ const UserDashboard = () => {
 
       console.log(result);
       if (result.status === 200) {
-        alert(`${result.data.description} is added`);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: " Your Incident added",
+          showConfirmButton: false,
+          timer: 1500
+        });
         handleClose();
         setIncidentCreate({
           ...incidentCreate,

@@ -112,7 +112,7 @@ function Javascript() {
               >
                 <PopoverHeader>Emergency Contact Number</PopoverHeader>
                 <PopoverBody>
-              * Emergency: 999 or 0120 (for fire, rescue, and medical emergencies)  <br />
+              * Emergency:  0120 (for fire, rescue, and medical emergencies)  <br />
 *Non-emergency: 101 (for reporting non-urgent incidents or seeking advice)
                 </PopoverBody>
               </UncontrolledPopover>
@@ -127,8 +127,8 @@ function Javascript() {
               <UncontrolledPopover placement="top" target="tooltip768569110">
                 <PopoverHeader>Police</PopoverHeader>
                 <PopoverBody>
-                *Emergency: 999 or 112 (for crimes in progress, emergencies, and life-threatening situations)
-*Non-emergency: 101 (for reporting non-urgent crimes or incidents)
+                *Emergency: 100  (for crimes in progress, emergencies, and life-threatening situations)
+*Non-emergency: 112 (for reporting non-urgent crimes or incidents)
 
                 </PopoverBody>
               </UncontrolledPopover>
@@ -146,7 +146,7 @@ function Javascript() {
               >
                 <PopoverHeader>Ambulance Service</PopoverHeader>
                 <PopoverBody>
-                *Emergency: 999 or 112 (for medical emergencies, accidents, and injuries) <br />
+                *Emergency: 101 (for medical emergencies, accidents, and injuries) <br />
 *Non-emergency: 111 (for medical advice and non-life-threatening emergencies)
 
                 </PopoverBody>
@@ -157,7 +157,7 @@ function Javascript() {
               <UncontrolledPopover placement="bottom" target="tooltip822900491">
                 <PopoverHeader>Gas Emergency Service:</PopoverHeader>
                 <PopoverBody>
-                Emergency: 0800 111 999 (National Gas Emergency Service - for reporting gas leaks or suspected gas emergencies)
+                Emergency: 080  999 (National Gas Emergency Service - for reporting gas leaks or suspected gas emergencies)
                 </PopoverBody>
               </UncontrolledPopover>
               <Button color="default" id="tooltip822900491" type="button"   >

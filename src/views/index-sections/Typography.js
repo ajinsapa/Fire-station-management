@@ -58,46 +58,50 @@ function Typography() {
                 </div>
                 <div className="typography-line">
                   <h1>Reviews</h1>
-                  <p>
-                    <span>Abay</span>The firefighters at Novo Fire and Rescue Services are true heroes! They responded quickly when my house caught fire and saved our family and pets. Forever grateful!
-                  </p>
+                  <p   >
+               <b> 
+               <span>  <b  className="text-black" >Abay</b> </span>The firefighters at Novo Fire and Rescue Services are true heroes! They responded quickly when my house caught fire and saved our family and pets. Forever grateful!
+               </b>  </p>
+                
+                     
                 </div>
               
                 <div className="typography-line">
-                  <span>Benny</span>
+                  <span> <b  className="text-black" >Benny</b></span>
                   <p className="text-muted">
+                    <b> 
                   Our local fire station always goes above and beyond! They regularly engage with the community, offering fire safety workshops and participating in neighborhood events. Thank you for keeping us safe!
-                  </p>
+                  </b>    </p>
                 </div>
                 <div className="typography-line">
-                  <span>Jenny</span>
-                  <p className="text-primary">
+                  <span>   <b  className="text-black" >Geetha</b>           </span>
+                  <p className="text-primary">  <b> 
                   I called 0120 when my husband had a heart attack, and the paramedics from Novo Fire And Rescue Services arrived within minutes. Their professionalism and expertise saved his life. Thank you!
-                  </p>
+                  </b>     </p>
                 </div>
                 <div className="typography-line">
-                  <span>Ashik</span>
-                  <p className="text-info">
+                  <span><b  className="text-black" >Ashik</b></span>
+                  <p className="text-info"> <b> 
                   I had to call the fire department for a minor kitchen fire, and they handled the situation swiftly and professionally. Grateful for their prompt response and expertise.
-                  </p>
+                  </b>        </p>
                 </div>
                 <div className="typography-line">
-                  <span>Hemin</span>
-                  <p className="text-success">
+                  <span><b  className="text-black" >Hemin</b></span>
+                  <p className="text-success"> <b> 
                   I'm proud to be part of the team at Novo Fire  And Rescue  Services. Our colleagues are dedicated, skilled professionals who work tirelessly to serve our community and save lives every day.
-                  </p>
+                  </b>    </p>
                 </div>
                 <div className="typography-line">
-                  <span>Shilpa</span>
-                  <p className="text-warning">
+                  <span><b  className="text-black" >Shilpa</b></span>
+                  <p className="text-warning"> <b> 
                   The leadership at our fire station is top-notch. They prioritize our safety, well-being, and professional development, fostering a positive work environment where we can thrive and excel in our roles.
-                  </p>
+                  </b>   </p>
                 </div>
                 <div className="typography-line">
-                  <span>Listin</span>
-                  <p className="text-danger">
+                  <span><b  className="text-black" >Listin</b></span>
+                  <p className="text-danger"> <b> 
                   The camaraderie among firefighters is unparalleled. We trust and support each other like family, which is essential when facing high-stress situations on the job.
-                  </p>
+                  </b>   </p>
                 </div>
                 
               </Col>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2'
   
 // reactstrap components
 import {
@@ -150,7 +149,7 @@ const handleUserRegister=async(e)=>{
   const result=await userRegisterApi(userRegister)
   console.log(result);
   
-  if(result.status==200){ 
+  if(result.status===200){ 
   setUserRegister({name:"",
   location:"",
   phone:"",
@@ -158,19 +157,13 @@ const handleUserRegister=async(e)=>{
   
   username:"",
   password:""})
-  alert(result.data.name+`Registered Successfully`)
-  toast.success(result.data.name+'Registered Successfully', {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    });
-
-
+  Swal.fire({
+    title: "Registered Successfully",
+    icon: "success",
+    position: "center",
+    showConfirmButton: false,
+    timer: 1500
+  });
 
   
   navigate('/login-page')
@@ -468,7 +461,7 @@ upassword && <p>Invalid password</p>
           </Row>
           
         </Container>
-        <ToastContainer />
+      
       </div>
     </>
   );

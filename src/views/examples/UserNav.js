@@ -1,15 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import './UserNav.css'
 
 
 // reactstrap components
 import {
   Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
+  
   NavbarBrand,
   Navbar,
   NavItem,

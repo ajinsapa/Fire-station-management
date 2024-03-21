@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./UserIncident.css";
 import UserNav from "./UserNav";
-import { getUserIncidentStatusApi } from "views/Services/AllApis";
 import { Button } from "reactstrap";
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import { addFeedBackApi } from "views/Services/AllApis";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 function UserIncident() {
   const token = localStorage.getItem("token");
@@ -48,7 +47,13 @@ function UserIncident() {
         })
         if(result.status === 200 ){
           console.log(result.data);
-          alert("FeedBack Added")
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Thank you for your feedback",
+            showConfirmButton: false,
+            timer: 1500
+          });
           ssetShow(false)
         }
       } catch (error) {
@@ -134,7 +139,7 @@ function UserIncident() {
               <ListGroup.Item>
                 {" "}
                 <Button
-                  onClick={() => SecondhandleShow(i.id)}
+                  onClick={() => SecondhandleShow(i?.Incident?.id)}
                   className="incident55"
                 >
                   {" "}

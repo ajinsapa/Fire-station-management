@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import Swal from 'sweetalert2'
 // reactstrap components
 import {
     Button,
@@ -62,7 +62,7 @@ const [spassword,setSPassword]=useState(false)
 const setDatas=(e)=>{
 
   const {value,name}=e.target
-  if(name=='name'){
+  if(name==='name'){
 if(value.match(/^[a-zA-Z *]+$/)){
 
  setSnameValid(false)
@@ -73,7 +73,7 @@ else{
 
   }
 
-if(name=='location'){
+if(name==='location'){
 
 if(value.match(/^[a-zA-Z ,]+$/)){
 
@@ -87,7 +87,7 @@ else{
 }
 
 
-if(name=='email_address'){
+if(name==='email_address'){
   if(value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)){
 setSEmail(false)
 
@@ -98,7 +98,7 @@ setSEmail(false)
 }
 
 
-if(name=='phone')
+if(name==='phone')
 {
   if (value.match(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/)){
     setSPhone(false)
@@ -108,7 +108,7 @@ if(name=='phone')
   }
 }
 
-if(name=='username'){
+if(name==='username'){
 
 if(value.match(/^[0-9A-Za-z]{6,16}$/)){
 
@@ -123,7 +123,7 @@ else{
 }
 
 
-if(name=='password')
+if(name==='password')
 {
 
 if(value.match(/^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/))
@@ -155,14 +155,21 @@ else{
 const result=await stationRegisterApi(station)
 console.log(result);
 
-if(result.status==200){ 
-alert(result.data.name +`Registered Successfully`)
+if(result.status===200){ 
+
 setStation({name:"",
 location:"",
 email_address:"",
 phone:"",
 username:"",
 password:""})
+Swal.fire({
+  title: "Registered Successfully",
+  icon: "success",
+  position: "center",
+  showConfirmButton: false,
+  timer: 1500
+});
 
 navigate('/station-login')
 }

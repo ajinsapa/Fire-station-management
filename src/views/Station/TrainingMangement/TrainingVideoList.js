@@ -105,8 +105,8 @@ console.log(token);
   useEffect(() => {
     getTrainingVideos();
   
-  console.log(trainingVideos);
   }, []);
+  console.log(trainingVideos);
 
   return (
     <div className="k1">

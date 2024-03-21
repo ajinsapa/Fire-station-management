@@ -58,7 +58,7 @@ const handleEquipmentAdd = async (e) => {
     console.log(result);
     if (result.status == 200) {
       alert(`${result.data.name}is added`);
-      setEquipment({ name: "", quantity: "", maintenance_record:"",expiration_date});
+      setEquipment({...equipment ,name: "", quantity: "", maintenance_record:"",expiration_date:""});
     } else {
       alert(result.response.data);
     }
@@ -99,7 +99,7 @@ const handleEquipmentAdd = async (e) => {
       console.log(result);
       if (result.status == 200) {
         alert(`${result.data.vehicle_type}is added`);
-        setVehicle({ ...vehicle, vehicle_type: "", plate_number: "" });
+        setVehicle({ ...vehicle,vehicle_type: "", plate_number: "" });
       } else {
         alert(result.response.data);
       }
@@ -157,6 +157,7 @@ const handleEquipmentAdd = async (e) => {
                           type="text"
                           placeholder="Name"
                           name={"vehicle_type"}
+                          value={vehicle.vehicle_type}
                           onChange={(e) => setVehicleInputs(e)}
                         />
                       </Form.Group>
@@ -171,6 +172,7 @@ const handleEquipmentAdd = async (e) => {
                           placeholder="Number"
                           onChange={(e) => setVehicleInputs(e)}
                           name={"plate_number"}
+                          value={vehicle.plate_number}
                         />
                       </Form.Group>
                     </Row>
@@ -211,6 +213,7 @@ const handleEquipmentAdd = async (e) => {
                         <Form.Control required type="text" placeholder="Name"
                         onChange={(e)=>{setEquipmentInputs(e)}}
                         name={"name"}
+                        value={equipment.name}
                         />
                       </Form.Group>
                       <Form.Group as={Col} controlId="validationCustom02">
@@ -224,6 +227,7 @@ const handleEquipmentAdd = async (e) => {
                           placeholder="Number"
                           onChange={(e)=>{setEquipmentInputs(e)}}
                         name={"quantity"}
+                        value={equipment.quantity}
                         />
                       </Form.Group>
                     </Row>
@@ -243,6 +247,7 @@ const handleEquipmentAdd = async (e) => {
                           required
                           onChange={(e)=>{setEquipmentInputs(e)}}
                         name={"maintenance_record"}
+                        value={equipment.maintenance_record}
                         />
                       </Form.Group>
                       <Form.Group
@@ -260,6 +265,7 @@ const handleEquipmentAdd = async (e) => {
                           required
                           onChange={(e)=>{setEquipmentInputs(e)}}
                         name={"expiration_date"}
+                        value={equipment.expiration_date}
                         />
                       </Form.Group>
                     </Row>

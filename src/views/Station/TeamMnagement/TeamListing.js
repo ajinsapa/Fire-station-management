@@ -7,56 +7,49 @@ import { Button } from "reactstrap";
 import Modal from "react-bootstrap/Modal";
 import { addTeamCreationApi } from "views/Services/AllApis";
 import axios from "axios";
+import TeamList from "./TeamList";
+
 
 const TeamListing = () => {
-  // token
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    getEmployee()
+    getEmployee();
   }, []);
 
-  // team creation
   const [team, setTeam] = useState({
     name: "",
     employees: [],
   });
-  const [employee, setEmployee] = useState(null)
-  console.log();
+
+  const [employee, setEmployee] = useState(null);
 
   const getEmployee = async () => {
     try {
-      const result = await axios.get(`http://127.0.0.1:8000/stationapi/team/available_employees/`, {
-        headers: {
-          Authorization: `Token ${token}`
+      const result = await axios.get(
+        `http://127.0.0.1:8000/stationapi/team/available_employees/`,
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
         }
-      })
+      );
       if (result.status === 200) {
-        console.log(result.data);
-        setEmployee(result.data)
+        setEmployee(result.data);
       }
     } catch (error) {
-
-    }
-  }
-
-  const setTeamInput = (e) => {
-    const { value, name } = e.target;
-    if (name === "employees") {
-      setTeam((prevTeam) => ({
-        ...prevTeam,
-        employees: [...prevTeam.employees, value],
-      }));
-    } else {
-      setTeam({ ...team, [name]: value });
+      console.error("Error fetching employees:", error);
     }
   };
 
-  const [numberOfEmployees, setNumberOfEmployees] = useState(0);
+  const setTeamInput = (e) => {
+    const { value, name } = e.target;
+    setTeam({ ...team, [name]: value });
+  };
+
   const [forms, setForms] = useState([]);
 
   const incrementEmployees = () => {
-    setNumberOfEmployees((prevCount) => prevCount + 1);
     setForms((prevForms) => [
       ...prevForms,
       <Form key={prevForms.length}>
@@ -64,18 +57,22 @@ const TeamListing = () => {
           <Form.Label>Select Employees</Form.Label>
           <Form.Control
             as="select"
-            value={team.employees[prevForms.length] || ""}
-            name="employees"
+            name={`employee${prevForms.length}`}
             onChange={(e) => {
-              setTeamInput(e);
+              const { value } = e.target;
+              setTeam((prevTeam) => ({
+                ...prevTeam,
+                employees: [...prevTeam.employees, value],
+              }));
             }}
           >
             <option value="">Select Employees</option>
-            {
-              employee != null ? employee.map((i) => (
-                <option key={i.id} value={i.id}>Employee {i.id}</option>
-              )) : <></>
-            }
+            {employee &&
+              employee.map((i) => (
+                <option key={i.id} value={i.id}>
+                  {i.name} - {i.id}
+                </option>
+              ))}
           </Form.Control>
         </Form.Group>
       </Form>,
@@ -83,7 +80,6 @@ const TeamListing = () => {
   };
 
   const decrementEmployees = () => {
-    setNumberOfEmployees((prevCount) => Math.max(0, prevCount - 1));
     setForms((prevForms) => prevForms.slice(0, -1));
   };
 
@@ -103,16 +99,13 @@ const TeamListing = () => {
       };
       const reqBody = {
         name: name,
-        employees: employees
+        employees: employees,
       };
       try {
         const result = await addTeamCreationApi(reqBody, reqHeader);
-        console.log(result);
-        if (result.status === 200) {
-          alert(`${result.data.name} is created`);
-          handleClose();
-          setTeam({ ...team, name: "", employees: [] });
-        }
+        alert(`${result.data.name} is created`);
+        setTeam({ name: "", employees: [] });
+        handleClose();
       } catch (error) {
         console.error("Error creating team:", error);
       }
@@ -122,32 +115,8 @@ const TeamListing = () => {
   return (
     <div className="b">
       <StationNav />
-      <div
-        className="team m-5"
-        style={{
-          border: "5px solid red",
-          backgroundColor: "beige",
-          padding: "50px",
-        }}
-      >
-        <h2 style={{ textAlign: "center", color: "black" }}>Assign Team</h2>
-        <FloatingLabel style={{ color: "black" }} controlId="incidentNumber">
-          <Form.Control type="number" placeholder="Incident Number" />
-        </FloatingLabel>
-        <FloatingLabel style={{ color: "black" }} controlId="teamName">
-          <Form.Control
-            type="text"
-            placeholder="Team Name"
-            value={team.name}
-            onChange={(e) => setTeamInput(e)}
-            name="name"
-          />
-        </FloatingLabel>
-        <div className="d-flex justify-content-between" style={{ marginTop: "150px" }}>
-          <Button style={{ backgroundColor: "red" }} href="/team-list">Teams</Button>
-          <Button onClick={handleShow} style={{ backgroundColor: "red" }}>Team Creation</Button>
-          <Button style={{ backgroundColor: "red" }}>Add</Button>
-        </div>
+      <div className="d-flex justify-content-between" style={{ marginTop: "150px" }}>
+        <Button className="teamcreation1 button1" onClick={handleShow} >Team Creation</Button>
       </div>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header>
@@ -164,20 +133,25 @@ const TeamListing = () => {
             />
           </FloatingLabel>
           <FloatingLabel style={{ color: "black" }} controlId="employeeSelect">
-            <Button className="button1" variant="" onClick={incrementEmployees}>
+            <Button  variant="" onClick={incrementEmployees}>
               <i className="fa-sharp fa-solid fa-plus icon"></i>
             </Button>
-            <Button variant="" className="button1" onClick={decrementEmployees}>
+            <Button variant=""  onClick={decrementEmployees}>
               <i className="fa-sharp fa-solid fa-minus icon"></i>
             </Button>
-            {forms.map((form) => form)}
+            {forms.map((form, index) => (
+              <div key={index}>{form}</div>
+            ))}
           </FloatingLabel>
         </Modal.Body>
         <Modal.Footer>
           <Button style={{ backgroundColor: "red" }} variant="secondary" onClick={handleClose}>Close</Button>
-          <Button onClick={(e) => handleCreateTeam(e)} style={{ backgroundColor: "red" }} variant="primary">Create</Button>
+          <Button onClick={handleCreateTeam} style={{ backgroundColor: "red" }} variant="primary">Create</Button>
         </Modal.Footer>
       </Modal>
+
+<TeamList></TeamList>
+
     </div>
   );
 };

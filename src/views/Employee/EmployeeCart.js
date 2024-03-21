@@ -47,7 +47,13 @@ function EmployeeCart() {
       if (response.status === 200) {
         console.log(response.data);
         alert("Video Completed");
-        getEmployeeAdd();
+        // Update the status of the completed video in the cartList
+        setCartList(prevCartList => prevCartList.map(video => {
+          if (video.id === id) {
+            return { ...video, status: "Completed" };
+          }
+          return video;
+        }));
       } 
     } catch (error) {
       console.error("Error marking video as completed:", error);
@@ -88,15 +94,14 @@ function EmployeeCart() {
                   <div>
                     <Form.Check
                       type="switch"
-                      id="statusSwitch"
+                      id={`statusSwitch_${index}`}
                       className="btn btn"
                       style={{ backgroundColor: "Red", color: "White" }}
                       onChange={()=>handleCompleteTranin(video?.id)}
                       label={
-                        video?.status != "Completed" ?  "Pending 😊" :"Completed 👍"
+                        video?.status !== "Completed" ?  "Pending 😊" :"Completed 👍"
                       }
-                     
-                      
+                      disabled={video?.status === "Completed"}
                     />
                   </div>
                 </CardBody>

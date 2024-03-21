@@ -151,7 +151,7 @@ Our station is more than just a building; it's a hub of activity and a beacon of
                       <p>
                         <b>
 
-                        Get to know the dedicated firefighters, officers, and support staff who make up our team at <b>NOVO FIRE AND RESCUE SERVICES</b>. Our personnel are highly trained, experienced, and committed to serving the residents of London with professionalism, compassion, and courage.
+                        Get to know the dedicated firefighters, officers, and support staff who make up our team at <b>NOVA FIRE AND RESCUE SERVICES</b>. Our personnel are highly trained, experienced, and committed to serving the residents of London with professionalism, compassion, and courage.
 
 
 

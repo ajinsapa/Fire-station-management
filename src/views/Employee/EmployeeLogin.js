@@ -5,8 +5,8 @@ import { employeeRegisterApi } from "views/Services/AllApis";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { employeeLoginApi } from "views/Services/AllApis";
-import EmployeeNav from "./EmployeeNav";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const EmployeeLogin = () => {
   //validation
@@ -157,16 +157,13 @@ const EmployeeLogin = () => {
     console.log(result);
 
 
-        toast.success("Login Success", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+    Swal.fire({
+      title: "Registered Successfully",
+      icon: "success",
+      position: "center",
+      showConfirmButton: false,
+      timer: 1500
+    });
         navigate("/employee-dash")
 
       } else {

@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import Trainingtable from './Trainingtable'
 import StationNav from '../StationNav'
 import './TrainingList.css'

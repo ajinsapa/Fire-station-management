@@ -18,6 +18,7 @@ function TeamList() {
             });
             setTeams(result.data);
             console.log(teams);
+            getTeams()
         } catch (error) {
             console.log(error);
         }
@@ -28,11 +29,10 @@ function TeamList() {
     }, []);
 
     return (
-        <div style={{ backgroundColor: "beige" }}>
-            <StationNav />
+        <div >
             <Container>
                 <div className="team-list-container">
-                    <h2 className="team-list-heading text-center">Teams</h2>
+                    
                     <Row>
                         {teams.map((team, index) => (
                             <Col lg={3} key={index}>

@@ -24,15 +24,13 @@ getTrainingStatus()
 },[])
 
 
-  const totalTrainingVideos = 10; // Total number of training videos
-  const videosAttended = 3; // Number of videos attended by the employee
   
         
  
   if(trainingStatus === null) return(<></>)
   console.log(trainingStatus);
   return (
-    <div className='w-75 curved-shadow ' >
+    <div className='w-75  curved-shadow ' >
       {trainingStatus.map((user, index) => {
         const data = [
           { name: 'Training Attended', value: (user.completed_trainings / user.total_trainings) * 100 ,fill:"#FFA500" },

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import Swal from 'sweetalert2'
 
 
 
@@ -117,20 +118,16 @@ localStorage.setItem("token",result.data.token)
 console.log(result);
 
 
-alert("Login Success")
-toast.success('Login Success!', {
-  position: "top-center",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  theme: "light",
-
+Swal.fire({
+  position: "center",
+  icon: "success",
+  title: "Login Success",
+  showConfirmButton: false,
+  timer: 1500
+});
   
  
-  });
+  
   navigate('/station-dashboard')
 
 }
@@ -138,7 +135,7 @@ else{
   setStationLogin({username:"",password:""})
 
   toast.error(result.response.data.non_field_errors[0]  , {
-    position: "top-right",
+    position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
