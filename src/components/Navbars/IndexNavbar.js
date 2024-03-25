@@ -154,7 +154,10 @@ function IndexNavbar() {
                     <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
                     User
                   </DropdownItem>
-                  
+                  <DropdownItem to="/user-dashboard" tag={Link}>
+                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
+                    Guest
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               
