@@ -185,6 +185,13 @@ const handleEquipmentAdd = async (e) => {
                     >
                       Add
                     </Button>
+                    <Button
+                     href="/view-vehicle"
+                      className="mb-5 mx-2"
+                      type="submit"
+                    >
+                      View
+                    </Button>
                   </Form>
                 </CardText>
               </CardBody>
@@ -272,6 +279,9 @@ const handleEquipmentAdd = async (e) => {
                     <Form.Group className="mb-3"></Form.Group>
                     <Button className="mb-5" type="submit"  onClick={(e)=>handleEquipmentAdd(e)}  >
                       Add
+                    </Button>
+                    <Button href="/view-equipment" className="mb-5 mx-2" type="submit"    >
+                      View
                     </Button>
                   </Form>
                 </CardText>

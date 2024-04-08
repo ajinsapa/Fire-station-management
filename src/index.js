@@ -53,6 +53,8 @@ import StationEquipment from "views/Station/StationEquipment";
 import ResourceMangement from "views/Station/IncidentManagement/ResourceMangement";
 import Incident from "views/Station/IncidentManagement/Incident";
 import EmployeeCart from "views/Employee/EmployeeCart";
+import VehicleView from "views/Employee/VehicleView";
+import EquipmentView from "views/Employee/EquipmentView";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -85,6 +87,9 @@ root.render(
       <Route path="/team-listing" element={<TeamListing />}></Route>
       <Route path="/incident-list/:id" element={<IncidentList />}></Route>
       <Route path="/team-list" element={<TeamList />}></Route>
+      <Route path="/view-vehicle" element={<VehicleView />}></Route>
+      <Route path="/view-equipment" element={<EquipmentView />}></Route>
+
       <Route path="/vehicle-list" element={<VehicleList />}></Route>
       <Route  path="employeevideo-list"  element={<EmployeeTrainingList/>} ></Route>
 <Route  path="/employee-dash" element={      <EmployeeDashboard/> }    ></Route>

@@ -90,7 +90,12 @@ export const delEmployeeApi=async(id,header)=>{
 export const getEmployeeTrainingVideos=async(header)=>{
   return await commonApi('GET',`${Base_Url}/employeeapi/traininglist/`,"",header)
 }
-
+export const getViewVehicleListApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/employeeapi/vehicle/`,"",header)
+}
+export const getViewEquipmentListApi=async(header)=>{
+  return await commonApi('GET',`${Base_Url}/employeeapi/equipment/`,"",header)
+}
 export const addVehicleApi=async(data,header)=>{
   return await commonApi('POST',`${Base_Url}/employeeapi/vehicle/`,data,header)
 }

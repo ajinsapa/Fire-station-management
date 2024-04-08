@@ -1,0 +1,17 @@
+.vehicle11{
+   
+
+    text-align: center;
+         display: flex;
+         width: 80%;
+         margin-left: 100px;
+         margin-top: 50px;
+ border: 2px orange solid;
+         margin-bottom: px;
+         padding: 10px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+         transition: box-shadow 0.3s ease; 
+       
+ 
+ }
+  
