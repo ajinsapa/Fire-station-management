@@ -76,9 +76,9 @@ function EmployeeTable() {
             {employeeList?.map((i, index) => (
               <tr key={i.id}>
                 <td>{index + 1}</td>
-                <td>{i.name}</td>
-                <td>{i.phone}</td>
-                <td>{i.email_address}</td>
+                <td>{i.emergency_support}</td>
+                <td>{i.location}</td>
+                <td>{i.phonenumber}</td>
                 <td>
                   <Button className='border-0' style={{ backgroundColor: "transparent" }} onClick={(e) => deleteEmployee(e, i.id)}>
                     <i className="fa-solid fa-trash" style={{ color: "red" }} ></i>
